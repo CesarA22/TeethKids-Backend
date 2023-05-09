@@ -9,19 +9,28 @@ export const addSampleUser = functions
     .region("southamerica-east1")
     .https.onRequest(async(Request, Response) => {
         const user = {
-            email: "jaozin@gmail.com",
-            name: "Joao Silva",
-            phone: 19999341398,
-            address1: "alameda das arvores 108",
+            email: "carlin@gmail.com",
+            name: "Carlinhos Macho",
+            phone: 19999745542,
+            address1: "alameda das bananas 69",
         };
         try{
             const docRef = await colUsers.add(user);
-            Response.send("Usuario exemplo insarido. Referencia: " + docRef);
+            Response.send("Usuario exemplo insarido. Referencia: " + docRef.id);
         }catch(e){
             functions.logger.error("Erro ao inserir o Usuario exemplo.");
             Response.send("Erro ao inserir o Usuario exemplo.");
         }
     });
+
+export const deleteUser = functions
+    .region("southamerica-east1")
+    .https.onRequest(async(Request, Response) => {
+        const userId = "Zy6EDS34Q070AxctOgRW";
+        await colUsers.doc(userId).delete();
+        Response.send("Exclusao realizada")
+    });
+
 
 // // Start writing functions
 // // https://firebase.google.com/docs/functions/typescript

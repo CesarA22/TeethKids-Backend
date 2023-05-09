@@ -1,6 +1,5 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import { user } from "firebase-functions/v1/auth";
 
 const app = admin.initializeApp();
 const db = app.firestore();
@@ -8,7 +7,7 @@ const colUsers = db.collection("Users");
 
 export const addSampleUser = functions
     .region("southamerica-east1")
-    .https.onRequest(async (Request, Response)) => {
+    .https.onRequest(async(Request, Response) => {
         const user = {
             email: "jaozin@gmail.com",
             name: "Joao Silva",
@@ -22,7 +21,7 @@ export const addSampleUser = functions
             functions.logger.error("Erro ao inserir o Usuario exemplo.");
             Response.send("Erro ao inserir o Usuario exemplo.");
         }
-    }
+    });
 
 // // Start writing functions
 // // https://firebase.google.com/docs/functions/typescript
